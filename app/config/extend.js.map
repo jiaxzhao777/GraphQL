@@ -1,0 +1,23 @@
+{
+    "version": 3,
+    "sources": [
+        "../../src/config/extend.js"
+    ],
+    "names": [
+        "view",
+        "require",
+        "model",
+        "cache",
+        "session",
+        "mongoose",
+        "module",
+        "exports",
+        "think",
+        "app"
+    ],
+    "mappings": "AAAA,MAAMA,OAAOC,QAAQ,YAAR,CAAb;AACA,MAAMC,QAAQD,QAAQ,aAAR,CAAd;AACA,MAAME,QAAQF,QAAQ,aAAR,CAAd;AACA,MAAMG,UAAUH,QAAQ,eAAR,CAAhB;AACA,MAAMI,WAAWJ,QAAQ,gBAAR,CAAjB;;AAEAK,OAAOC,OAAP,GAAiB,CACfP,IADe,EACT;AACNE,MAAMM,MAAMC,GAAZ,CAFe,EAGfN,KAHe,EAIfC,OAJe,EAKfC,SAASG,MAAMC,GAAf,CALe,CAAjB",
+    "file": "../../src/config/extend.js",
+    "sourcesContent": [
+        "const view = require('think-view');\nconst model = require('think-model');\nconst cache = require('think-cache');\nconst session = require('think-session');\nconst mongoose = require('think-mongoose');\n\nmodule.exports = [\n  view, // make application support view\n  model(think.app),\n  cache,\n  session,\n  mongoose(think.app)\n];\n"
+    ]
+}
