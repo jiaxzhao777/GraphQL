@@ -10,9 +10,9 @@ module.exports = class extends think.Mongoose {
       actors: [
         {
           type: think.Mongoose.Schema.Types.ObjectId,
-          ref: "actor",
-        },
-      ],
+          ref: 'actor'
+        }
+      ]
     };
   }
 };
