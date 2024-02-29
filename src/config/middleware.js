@@ -1,40 +1,58 @@
-const path = require('path');
-const isDev = think.env === 'development';
+;const path = require("path");
+const isDev = think.env === "development";
+const graphql = require("../apollo");
+const { makeExecutableSchema } = require("graphql-tools");
+const Schema = require("../graphql/schema");
+const Resolvers = require("../graphql/resolvers");
+const Connectors = require("../graphql/connectors");
 
 module.exports = [
   {
-    handle: 'meta',
+    handle: "meta",
     options: {
       logRequest: isDev,
-      sendResponseTime: isDev
-    }
+      sendResponseTime: isDev,
+    },
   },
   {
-    handle: 'resource',
+    handle: "resource",
     enable: isDev,
     options: {
-      root: path.join(think.ROOT_PATH, 'www'),
-      publicPath: /^\/(static|favicon\.ico)/
-    }
+      root: path.join(think.ROOT_PATH, "www"),
+      publicPath: /^\/(static|favicon\.ico)/,
+    },
   },
   {
-    handle: 'trace',
+    handle: "trace",
     enable: !think.isCli,
     options: {
-      debug: isDev
-    }
+      debug: isDev,
+    },
   },
   {
-    handle: 'payload',
+    handle: "payload",
     options: {
       keepExtensions: true,
-      limit: '5mb'
-    }
+      limit: "5mb",
+    },
   },
   {
-    handle: 'router',
-    options: {}
+    handle: "/graphql",
+    handle: graphql,
+    options: {
+      schema: makeExecutableSchema({
+        typeDefs: Schema,
+        resolvers: Resolvers,
+      }),
+      context: {
+        db: Connectors,
+      },
+    },
   },
-  'logic',
-  'controller'
+  {
+    handle: "router",
+    options: {},
+  },
+  "logic",
+  "controller",
 ];

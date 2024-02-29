@@ -13,6 +13,7 @@
   "dependencies": {
     "apollo-server-core": "^3.13.0",
     "graphql": "^16.8.1",
+    "graphql-tools": "^9.0.1",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",
     "think-logger3": "^1.0.0",
